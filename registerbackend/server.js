@@ -8,7 +8,7 @@ var routeUrls = require('./router/route')
 
 dotenv.config()
 
-mongoose.connect("mongodb+srv://powerpuffgirls:PowerPuffGirls@cluster0.6hhuy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", () =>console.log("DB connected"))
+mongoose.connect("mongodb+srv://powerpuffgirls:PowerPuffGirls@cluster0.6hhuy.mongodb.net/userTable?retryWrites=true&w=majority", () =>console.log("DB connected"))
 
 app.use(express.json()) //body passer activated
 app.use(cor())
