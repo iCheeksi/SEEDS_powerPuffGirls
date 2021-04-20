@@ -40,7 +40,7 @@ class App extends Component {
             userName: this.state.userName,
             password: this.state.password
         }
-        axios.post('http://localhost:3000/page/register', registered)
+        axios.post('http://localhost:3000/server/register', registered)
         .then(response => console.log(response.data))
         
         this.setState({

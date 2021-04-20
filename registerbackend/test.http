@@ -1,9 +1,9 @@
   
-POST http://localhost:3000/page/register
+POST http://localhost:3000/server/register
 Content-Type: application/json
 
 {
-    "name":"shelby",
-    "userName":"cheeky",
-    "password":"12345"
+    "name":"checking",
+    "userName":"to",
+    "password":"see"
 }

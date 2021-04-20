@@ -12,7 +12,7 @@ mongoose.connect("mongodb+srv://powerpuffgirls:PowerPuffGirls@cluster0.6hhuy.mon
 
 app.use(express.json()) //body passer activated
 app.use(cor())
-app.use('/page', routeUrls)
+app.use('/server', routeUrls)
 app.listen(3000, () =>{
     console.log("Server is working!")
 })
