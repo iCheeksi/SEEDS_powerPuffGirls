@@ -12,7 +12,7 @@ class App extends Component {
             name:'',
             userName:'',
             password:'',
-            users: [],
+            articles: [],
             loading: true
         }
         this.changename = this.changename.bind(this)
@@ -23,7 +23,7 @@ class App extends Component {
     async getArticles(){
         const res = await axios.get('http://localhost:3001/api/api')
         console.log(res.data)
-        this.setState({loading:false, users: res.data})
+        this.setState({loading:false, articles: res.data})
       }
     componentDidMount = () =>{
         this.getArticles();
@@ -134,7 +134,7 @@ class App extends Component {
                         </div>
 
                         <ReactTable  
-                            data={this.state.users}  
+                            data={this.state.articles}  
                             columns={columns}  
                         />
                     </div>
