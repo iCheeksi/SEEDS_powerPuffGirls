@@ -4,7 +4,7 @@
   "description": "user register backend",
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest --no-cache",
+    "test": "jest",
     "start": "nodemon server.js"
   },
   
