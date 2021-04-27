@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.css"
 import axios from 'axios'
+import ReactTable from "react-table-6";  
+import "react-table-6/react-table.css" 
 
 
 class App extends Component {
@@ -10,52 +12,23 @@ class App extends Component {
             name:'',
             userName:'',
             password:'',
-            title: '',
-            author:'',
-            year: '',
-            sePracticeFull: '',
-            sePracticeShort: '',
-            claim: '',
-            evidenceStrength: '',
-            posts: []
+            articles: [],
+            loading: true
         }
         this.changename = this.changename.bind(this)
         this.changeUserName = this.changeUserName.bind(this)
         this.changePassword = this.changePassword.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
+    async getArticles(){
+        const res = await axios.get('http://localhost:3001/api/api')
+        console.log(res.data)
+        this.setState({loading:false, articles: res.data})
+      }
     componentDidMount = () =>{
         this.getArticles();
     }
     
-    getArticles = () => {
-        axios.get('http://localhost:3001/api/api')
-        .then((response) => {
-            const data = response.data;
-            this.setState({posts: data})
-            console.log('data saved!')
-        })
-        .catch(() => {
-            alert('error')
-        })
-    }
-
-    displayArticles = (posts) => {
-        if (!posts.length) return null;
-        
-        return posts.map((post,index) => (
-            <div key = {index} className="article__display">
-                <h6>{post.title}</h6>
-                <p>{post.author}</p>
-                <p>{post.year}</p>
-                <p>{post.sePracticeFull}</p>
-                <p>{posts.sePracticeShort}</p>
-                <p>{post.claim}</p>
-                <p>{post.evidenceStrength}</p>
-            </div>
-        ));
-        
-    };
     
     //react function to change the value of name, username and password field
     changename(event){
@@ -96,10 +69,42 @@ class App extends Component {
     
 
     render(){
+        const columns = [{  
+            Header: 'Title',  
+            accessor: 'title',
+           }
+           ,{  
+            Header: 'Author(s)',  
+            accessor: 'author' ,
+            }
+           
+           ,{  
+           Header: 'Year',  
+           accessor: 'year' ,
+           }
+           ,{  
+           Header: 'SE Practice',  
+           accessor: 'sePracticeFull',
+           },
+           {  
+            Header: 'Abbreviation',  
+            accessor: 'sePracticeShort',
+            },
+            {  
+              Header: 'Claim',  
+              accessor: 'claim',
+            },
+            {  
+              Header: 'Evidence Strength',  
+              accessor: 'evidenceStrength',
+            }
+        ]
+
         return(
             <div>
                 <div className='container'>
                     <div className='form-div'>
+                    <h3>{'Register'}</h3>
                         <form onSubmit={this.onSubmit}>
                             <input type = 'text'
                             placeholder='Name'
@@ -123,9 +128,15 @@ class App extends Component {
                             <input type='submit' className='btn btn-danger btn-block' value='submit'>
                             </input>
                         </form>
-                        <div className="articles" > 
-                        {this.displayArticles(this.state.posts)}
+
+                        <div >
+                        <h3>{'Table of Articles'}</h3>
                         </div>
+
+                        <ReactTable  
+                            data={this.state.articles}  
+                            columns={columns}  
+                        />
                     </div>
                 </div>
             </div>
