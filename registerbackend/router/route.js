@@ -2,7 +2,7 @@
 
 var express = require ("Express")
 var router = express.Router()
-var databaseInfo = require('../database/database')
+var databaseInfo = require('../models/database')
 
 //The page is expecting post request since the user will give the page some information
 router.post('/register', (request, response) => 
