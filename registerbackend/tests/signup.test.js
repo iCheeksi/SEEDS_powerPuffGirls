@@ -25,9 +25,7 @@ describe('user CRUD',() => {
         });
         await response.save();
         expect(response.name).toBe("test");
-        
-
+    
     });
-
     
  });
