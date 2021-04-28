@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.css"
 import axios from 'axios'
 import ReactTable from "react-table-6";  
+import Search from './search';
 import "react-table-6/react-table.css" 
 
 
@@ -65,8 +66,6 @@ class App extends Component {
         })
 
     }
-    
-    
 
     render(){
         const columns = [{  
@@ -128,6 +127,13 @@ class App extends Component {
                             <input type='submit' className='btn btn-danger btn-block' value='submit'>
                             </input>
                         </form>
+
+                        <div>
+                            <br></br>
+                            <Search />
+                            
+                            <br></br>
+                        </div>
 
                         <div >
                         <h3>{'Table of Articles'}</h3>
