@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 12
       - run: npm install
-      - run: cd registerbackend
+      - run: cd register
+      - run: npm test
+      - run: cd ../registerbackend
       - run: npm test
       - run: npm run build
