@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall":  "cd register && npm install"
+    "postinstall":  "cd register && npm install",
     "start": "cd register & npm start"
   },
   "repository": {
