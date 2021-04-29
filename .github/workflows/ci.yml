@@ -17,9 +17,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm install
-      - run: cd register
+      - run: npm ci
+      - working-directory: register
       - run: npm test
-      - run: cd ../registerbackend
+      - working-directory: registerbackend
       - run: npm test
-      - run: npm run build
