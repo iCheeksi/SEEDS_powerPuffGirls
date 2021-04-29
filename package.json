@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd registerbackend && npm install", "cd register && npm install"
-    "start": "cd registerbackend && npm start", "cd register & npm start"
+    "postinstall":  "cd register && npm install"
+    "start": "cd register & npm start"
   },
   "repository": {
     "type": "git",
