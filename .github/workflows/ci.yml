@@ -17,7 +17,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm install
+      - name: Install frontend dependencies
+        working-directory: register
+        run: npm install
+      - name: Install backend dependencies
+        working-directory: registerbackend
+        run: npm install
       - name: Test frontend
         working-directory: register
         run: npm test
