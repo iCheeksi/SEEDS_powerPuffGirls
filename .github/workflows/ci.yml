@@ -18,7 +18,9 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - working-directory: register
-      - run: npm test
-      - working-directory: registerbackend
-      - run: npm test
+      - name: Test frontend
+        working-directory: register
+        run: npm test
+      - name: Test backend
+        working-directory: registerbackend
+        run: npm test
