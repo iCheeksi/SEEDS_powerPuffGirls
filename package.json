@@ -1,6 +1,9 @@
 {
-  "scripts": {
-      "postinstall": "cd register && npm install",
-      "start": "cd register && npm start"
-  }
+    "scripts": {
+        "postinstall": "cd register && npm install",
+        "start": "cd register && npm start"
+    },
+    "dependencies": {
+        "react-router-dom": "^5.2.0"
+    }
 }
