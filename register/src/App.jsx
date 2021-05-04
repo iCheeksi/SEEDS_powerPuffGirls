@@ -3,10 +3,23 @@ import "bootstrap/dist/css/bootstrap.css"
 import axios from 'axios'
 import ReactTable from "react-table-6";  
 import Search from './search';
-import "react-table-6/react-table.css" 
+import "react-table-6/react-table.css"
+ 
+let posts = []
 
+const filterPosts = (articles, query) => {
+    if (!query) {
+        return articles;
+    }
+   
+    return articles.filter((articles) => {
+        const articleName = articles.title.toLowerCase();
+        return articleName.includes(query);
+    });
+};
 
 class App extends Component {
+    
     constructor(){
         super()
         this.state = {
@@ -24,12 +37,12 @@ class App extends Component {
     async getArticles(){
         const res = await axios.get('http://localhost:3001/api/api')
         console.log(res.data)
+        posts = res.data
         this.setState({loading:false, articles: res.data})
       }
     componentDidMount = () =>{
         this.getArticles();
     }
-    
     
     //react function to change the value of name, username and password field
     changename(event){
@@ -99,6 +112,10 @@ class App extends Component {
             }
         ]
 
+        const { search } = window.location;
+        const query = new URLSearchParams(search).get('s');
+        const filteredPosts = filterPosts(posts, query);
+
         return(
             <div>
                 <div className='container'>
@@ -140,7 +157,7 @@ class App extends Component {
                         </div>
 
                         <ReactTable  
-                            data={this.state.articles}  
+                            data={filteredPosts}  
                             columns={columns}  
                         />
                     </div>
