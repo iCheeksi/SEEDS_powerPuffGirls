@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/iCheeksi/SEEDS_powerPuffGirls/issues"
   },
-  "homepage": "https://github.com/iCheeksi/SEEDS_powerPuffGirls#readme"
+  "homepage": "https://github.com/iCheeksi/SEEDS_powerPuffGirls#readme",
+  "dependencies": {
+    "react-table": "^7.7.0"
+  }
 }
