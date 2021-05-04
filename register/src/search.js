@@ -1,7 +1,8 @@
 const SearchBar = () => (
+    
     <form action="/" method="get">
         <label htmlFor="header-search">
-            <span className="visually-hidden">Search articles </span>
+            <span className="visually-hidden"> </span>
         </label>
         <input
             type="text"
@@ -11,6 +12,7 @@ const SearchBar = () => (
         />
         <button type="submit">Search</button>
     </form>
+    
 );
 
 export default SearchBar;
