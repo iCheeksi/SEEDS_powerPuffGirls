@@ -14,7 +14,7 @@ const SearchBar = () => (
             placeholder="Search article titles"
             name="s" 
         />
-        <button class="btn btn-danger" type="button">Search</button>
+        <button class="btn btn-danger" type="submit">Search</button>
         </div>
     </form>
     
