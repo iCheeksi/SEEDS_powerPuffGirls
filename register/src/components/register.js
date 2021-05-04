@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.css"
 import axios from 'axios'
+import Rlogo from './register.png';
 
 class Register extends Component {
     constructor(){
@@ -55,6 +56,17 @@ render(){
     return(
         <div>
             <div className='container'>
+            <br></br>
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+            <h3>{'Register!'}</h3>
+            </div>
+            <br></br>
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+             
+               <img src={Rlogo} alt={"logo"} width="230" height="250"  ></img> 
+              
+            </div>
+            <br></br>
                 <div className='form-div'>
                     <form onSubmit={this.onSubmit}>
                         <input type = 'text'

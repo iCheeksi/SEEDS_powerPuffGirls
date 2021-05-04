@@ -89,6 +89,7 @@ render(){
             </div>
             <div >
                 <h3>{'Table of Articles'}</h3>
+                <p>{'Click column header to sort & Drag column header to widen columns'}</p>
             </div>
                 <ReactTable  
                     data={filteredPosts}  
