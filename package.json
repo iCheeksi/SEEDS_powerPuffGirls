@@ -1,24 +1,9 @@
 {
-  "name": "SEEDS_powerPuffGirls",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "postinstall":  "cd register && npm install",
-    "start": "cd register & npm start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iCheeksi/SEEDS_powerPuffGirls.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iCheeksi/SEEDS_powerPuffGirls/issues"
-  },
-  "homepage": "https://github.com/iCheeksi/SEEDS_powerPuffGirls#readme",
-  "dependencies": {
-    "react-table": "^7.7.0"
-  }
+    "scripts": {
+        "postinstall": "cd register && npm install",
+        "start": "cd register && npm start"
+    },
+    "dependencies": {
+        "react-router-dom": "^5.2.0"
+    }
 }
