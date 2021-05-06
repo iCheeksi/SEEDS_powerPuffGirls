@@ -8,6 +8,7 @@ import "../table.css"
 import "bootstrap/dist/css/bootstrap.css"
 import logo from './SEEDSlogo.png';
 let posts = []
+let filteredPosts = []
 
 const filterPosts = (articles, query) => {
     if (!query) {
@@ -20,13 +21,26 @@ const filterPosts = (articles, query) => {
     });
 };
 
+const filterStrengthPosts = (articles, index) => {
+    if (index === "Evidence Strength") {
+        return articles;
+    }
+
+    return articles.filter((articles) => {
+        const articleName = articles.evidenceStrength;
+        return articleName.includes(index);
+    });
+};
+
 class SearchTable extends Component {
     constructor(){
         super()
         this.state = {
             articles: [],
-            loading: true
+            loading: true,
+            strengthLevel:"Evidence Strength"
         }
+        this.optionSelect = this.optionSelect.bind(this)
 }
 async getArticles(){
     const res = await axios.get('http://localhost:3001/api/api')
@@ -36,6 +50,11 @@ async getArticles(){
   }
 componentDidMount = () =>{
     this.getArticles();
+}
+optionSelect(event) {
+    var index = event.target.options[event.target.selectedIndex].text
+    this.setState({
+        strengthLevel: index})
 }
 render(){
     const columns = [{  
@@ -71,7 +90,10 @@ render(){
 
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
-    const filteredPosts = filterPosts(posts, query);
+    filteredPosts = []
+    filteredPosts = filterPosts(posts, query)
+    filteredPosts = filterStrengthPosts(filteredPosts, this.state.strengthLevel);
+
     return(
         <div>
            <div>
@@ -85,11 +107,18 @@ render(){
                </div>
                <br></br>
                 <Search/>
+                <select name='Evidence' id='Evidence' onChange= {this.optionSelect} class="customer-select">
+                    <option value>Evidence Strength</option>
+                    <option value>Strongly Support</option>
+                    <option value>Strongly Agree</option>
+                    <option value>Strongly Against</option>
+                </select>
+          
                <br></br>
             </div>
             <div >
                 <h3>{'Table of Articles'}</h3>
-                <p>{'Click column header to sort & Drag column header to widen columns'}</p>
+                <p>{'Click column header to sort & drag column header to widen columns'}</p>
             </div>
                 <ReactTable  
                     data={filteredPosts}  
