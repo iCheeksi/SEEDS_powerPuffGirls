@@ -27,10 +27,41 @@ const filterStrengthPosts = (articles, index) => {
     }
 
     return articles.filter((articles) => {
-        const articleName = articles.evidenceStrength;
-        return articleName.includes(index);
+        const articleStrength = articles.evidenceStrength;
+        return articleStrength.includes(index);
     });
 };
+
+const filterYearPosts = (articles, index) => {
+    var year = new Date().getFullYear()
+    if (index === "Year") {
+        return articles;
+    } else if (index === "Last 5 Years") {
+        return articles.filter((articles) => {
+            const articleYear = articles.year;
+            if(articleYear < year && articleYear >= year-5) {
+                return articleYear
+            }
+            return articleYear.includes(index)
+        });
+    } else if (index === "Last 10 Years") {
+        return articles.filter((articles) => {
+            const articleYear = articles.year;
+            if(articleYear < year && articleYear >= year-10) {
+                return articleYear
+            }
+            return articleYear.includes(index)
+        });
+    } else if (index === "Last 15 Years") {
+        return articles.filter((articles) => {
+            const articleYear = articles.year;
+            if(articleYear < year && articleYear >= year-15) {
+                return articleYear
+            }
+            return articleYear.includes(index)
+        });
+    }
+}
 
 class SearchTable extends Component {
     constructor(){
@@ -38,9 +69,11 @@ class SearchTable extends Component {
         this.state = {
             articles: [],
             loading: true,
-            strengthLevel:"Evidence Strength"
+            strengthLevel:"Evidence Strength",
+            yearLevel: "Year"
         }
         this.optionSelect = this.optionSelect.bind(this)
+        this.yearSelect = this.yearSelect.bind(this)
 }
 async getArticles(){
     const res = await axios.get('http://localhost:3001/api/api')
@@ -55,6 +88,11 @@ optionSelect(event) {
     var index = event.target.options[event.target.selectedIndex].text
     this.setState({
         strengthLevel: index})
+}
+yearSelect(event) {
+    var index = event.target.options[event.target.selectedIndex].text
+    this.setState({
+        yearLevel: index})
 }
 render(){
     const columns = [{  
@@ -88,11 +126,11 @@ render(){
         }
     ]
 
-    const { search } = window.location;
-    const query = new URLSearchParams(search).get('s');
-    filteredPosts = []
+    const { search } = window.location
+    const query = new URLSearchParams(search).get('s')
     filteredPosts = filterPosts(posts, query)
-    filteredPosts = filterStrengthPosts(filteredPosts, this.state.strengthLevel);
+    filteredPosts = filterStrengthPosts(filteredPosts, this.state.strengthLevel)
+    filteredPosts = filterYearPosts(filteredPosts, this.state.yearLevel)
 
     return(
         <div>
@@ -107,13 +145,18 @@ render(){
                </div>
                <br></br>
                 <Search/>
+                <select name='Year' id='Year' onChange= {this.yearSelect} class="customer-select">
+                    <option value>Year</option>
+                    <option value>Last 5 Years</option>
+                    <option value>Last 10 Years</option>
+                    <option value>Last 15 Years</option>
+                </select>
                 <select name='Evidence' id='Evidence' onChange= {this.optionSelect} class="customer-select">
                     <option value>Evidence Strength</option>
                     <option value>Strongly Support</option>
                     <option value>Strongly Agree</option>
                     <option value>Strongly Against</option>
                 </select>
-          
                <br></br>
             </div>
             <div >
@@ -128,4 +171,5 @@ render(){
      );
 }
 }
+
 export default SearchTable;
