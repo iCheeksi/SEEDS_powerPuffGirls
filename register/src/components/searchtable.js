@@ -127,7 +127,7 @@ render(){
     ]
 
     const { search } = window.location
-    const query = new URLSearchParams(search).get('s')
+    const query = new URLSearchParams(search).get('search')
     filteredPosts = filterPosts(posts, query)
     filteredPosts = filterStrengthPosts(filteredPosts, this.state.strengthLevel)
     filteredPosts = filterYearPosts(filteredPosts, this.state.yearLevel)
@@ -145,13 +145,13 @@ render(){
                </div>
                <br></br>
                 <Search/>
-                <select name='Year' id='Year' onChange= {this.yearSelect} class="customer-select">
+                <select name='Year' id='Year' onChange= {this.yearSelect}>
                     <option value>Year</option>
                     <option value>Last 5 Years</option>
                     <option value>Last 10 Years</option>
                     <option value>Last 15 Years</option>
                 </select>
-                <select name='Evidence' id='Evidence' onChange= {this.optionSelect} class="customer-select">
+                <select name='Evidence' id='Evidence' onChange= {this.optionSelect}>
                     <option value>Evidence Strength</option>
                     <option value>Strongly Support</option>
                     <option value>Strongly Agree</option>
