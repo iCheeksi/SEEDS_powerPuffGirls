@@ -5,14 +5,14 @@ import Register from "./components/register";
 import SearchTable from "./components/searchtable";
 
 function App() {
-    return (
-      <Router>
-        <div className="container">
-          <br />
-          <Route path="/" exact component={SearchTable} />
-          <Route path="/register" exact component={Register} />
-        </div>
-      </Router>
-    );
-  }
-  export default App;
+  return (
+    <Router>
+      <div className="container">
+        <br />
+        <Route path="/" exact component={SearchTable} />
+        <Route path="/register" exact component={Register} />
+      </div>
+    </Router>
+  );
+}
+export default App;
