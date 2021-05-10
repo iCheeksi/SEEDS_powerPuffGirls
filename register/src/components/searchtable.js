@@ -10,57 +10,42 @@ import logo from "./SEEDSlogo.png";
 let posts = [];
 let filteredPosts = [];
 
-const filterPosts = (articles, query) => {
-  if (!query) {
+const filterPosts = (articles, search, searchField) => {
+  if (!search) {
     return articles;
   }
 
-  return articles.filter((articles) => {
-    const articleName = articles.title.toLowerCase();
-    return articleName.includes(query);
+  return articles.filter((articles) => { 
+    const searchTerm = search.toLowerCase()
+    switch(searchField) {
+      case "Title":
+        const title = articles.title.toLowerCase()
+        return title.includes(searchTerm)
+      case "Author":
+        const author = articles.author.toLowerCase()
+        return author.includes(searchTerm)
+      case "Year":
+        const year = articles.year
+        return year.includes(searchTerm)
+      case "SEPrac": 
+        const SEPrac = articles.sePracticeFull.toLowerCase()
+        return SEPrac.includes(searchTerm)
+      case "SEAbb": 
+        const SEAbb = articles.sePracticeShort.toLowerCase()
+        return SEAbb.includes(searchTerm)
+      case "Claim":
+        const claim = articles.claim.toLowerCase()
+        return claim.includes(searchTerm)
+      case "EvStr":
+        const evStr = articles.evidenceStrength.toLowerCase()
+        return evStr.includes(searchTerm)
+      default: //ALL 
+        const full = articles.title.toLowerCase() +  articles.author.toLowerCase() + articles.year 
+          + articles.sePracticeFull.toLowerCase() + articles.sePracticeShort.toLowerCase() + articles.claim.toLowerCase() 
+          + articles.evidenceStrength.toLowerCase()
+        return full.includes(searchTerm);
+    }
   });
-};
-
-const filterStrengthPosts = (articles, index) => {
-  if (index === "Evidence Strength") {
-    return articles;
-  }
-
-  return articles.filter((articles) => {
-    const articleStrength = articles.evidenceStrength;
-    return articleStrength.includes(index);
-  });
-};
-
-const filterYearPosts = (articles, index) => {
-  var year = new Date().getFullYear();
-  if (index === "Year") {
-    return articles;
-  } else if (index === "Last 5 Years") {
-    return articles.filter((articles) => {
-      const articleYear = articles.year;
-      if (articleYear < year && articleYear >= year - 5) {
-        return articleYear;
-      }
-      return articleYear.includes(index);
-    });
-  } else if (index === "Last 10 Years") {
-    return articles.filter((articles) => {
-      const articleYear = articles.year;
-      if (articleYear < year && articleYear >= year - 10) {
-        return articleYear;
-      }
-      return articleYear.includes(index);
-    });
-  } else if (index === "Last 15 Years") {
-    return articles.filter((articles) => {
-      const articleYear = articles.year;
-      if (articleYear < year && articleYear >= year - 15) {
-        return articleYear;
-      }
-      return articleYear.includes(index);
-    });
-  }
 };
 
 class SearchTable extends Component {
@@ -79,8 +64,6 @@ class SearchTable extends Component {
       claimSelected: true,
       evidenceStrength: true,
     };
-    this.optionSelect = this.optionSelect.bind(this);
-    this.yearSelect = this.yearSelect.bind(this);
   }
   handleInputChange(value) {
     this.setState({ titleSelected: !this.state.titleSelected });
@@ -112,18 +95,6 @@ class SearchTable extends Component {
   componentDidMount = () => {
     this.getArticles();
   };
-  optionSelect(event) {
-    var index = event.target.options[event.target.selectedIndex].text;
-    this.setState({
-      strengthLevel: index,
-    });
-  }
-  yearSelect(event) {
-    var index = event.target.options[event.target.selectedIndex].text;
-    this.setState({
-      yearLevel: index,
-    });
-  }
   render() {
     const {
       titleSelected,
@@ -174,13 +145,9 @@ class SearchTable extends Component {
     ];
 
     const { search } = window.location;
-    const query = new URLSearchParams(search).get("search");
-    filteredPosts = filterPosts(posts, query);
-    filteredPosts = filterStrengthPosts(
-      filteredPosts,
-      this.state.strengthLevel
-    );
-    filteredPosts = filterYearPosts(filteredPosts, this.state.yearLevel);
+    const searchTerm = new URLSearchParams(search).get("search");
+    const searchField = new URLSearchParams(search).get("searchField");
+    filteredPosts = filterPosts(posts, searchTerm, searchField);
 
     return (
       <div>
@@ -199,18 +166,6 @@ class SearchTable extends Component {
           </div>
           <br></br>
           <Search />
-          <select name="Year" id="Year" onChange={this.yearSelect}>
-            <option value>Year</option>
-            <option value>Last 5 Years</option>
-            <option value>Last 10 Years</option>
-            <option value>Last 15 Years</option>
-          </select>
-          <select name="Evidence" id="Evidence" onChange={this.optionSelect}>
-            <option value>Evidence Strength</option>
-            <option value>Strongly Support</option>
-            <option value>Strongly Agree</option>
-            <option value>Strongly Against</option>
-          </select>
           <br></br>
         </div>
         <br></br>
