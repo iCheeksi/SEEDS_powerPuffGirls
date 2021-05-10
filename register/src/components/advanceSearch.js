@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import SearchTable from "./searchtable";
-const SearchBar = () => (
+const AdvancedSearchBar = () => (
   <form action="/" method="get">
     <label htmlFor="header-search">
       <span className="visually-hidden"> </span>
@@ -17,12 +16,29 @@ const SearchBar = () => (
         <option value="EvStr">Evidence Strength</option>
       </select>
       <input
-        //class="form-control"
         aria-label="Default"
         type="text"
         id="header-search"
         placeholder="Search..."
         name="search"
+      />
+    <br />
+      <select name="searchField2" id="searchField2">
+        <option value="All">All</option>
+        <option value="Title">Article Title</option>
+        <option value="Author">Author</option>
+        <option value="Year">Year</option>
+        <option value="SEPrac">SE Practice</option>
+        <option value="SEAbb">SE Practice Abbreviation</option>
+        <option value="Claim">Claim</option>
+        <option value="EvStr">Evidence Strength</option>
+      </select>
+      <input
+        aria-label="Default"
+        type="text"
+        id="header-search"
+        placeholder="Search..."
+        name="search2"
       />
       <button class="btn btn-danger" type="submit">
         Search
@@ -31,4 +47,4 @@ const SearchBar = () => (
   </form>
 );
 
-export default SearchBar;
+export default AdvancedSearchBar;

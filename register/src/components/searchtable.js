@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactTable from "react-table-6";
 import Search from "./search";
+import AdvancedSearch from "./advanceSearch";
 import { Link } from "react-router-dom";
 import "react-table-6/react-table.css";
 import "../table.css";
@@ -39,7 +40,7 @@ const filterPosts = (articles, search, searchField) => {
       case "EvStr":
         const evStr = articles.evidenceStrength.toLowerCase()
         return evStr.includes(searchTerm)
-      default: //ALL 
+      default: //Check all fields
         const full = articles.title.toLowerCase() +  articles.author.toLowerCase() + articles.year 
           + articles.sePracticeFull.toLowerCase() + articles.sePracticeShort.toLowerCase() + articles.claim.toLowerCase() 
           + articles.evidenceStrength.toLowerCase()
@@ -54,8 +55,6 @@ class SearchTable extends Component {
     this.state = {
       articles: [],
       loading: true,
-      strengthLevel: "Evidence Strength",
-      yearLevel: "Year",
       titleSelected: true,
       authorSelected: true,
       yearSelected: true,
@@ -63,7 +62,11 @@ class SearchTable extends Component {
       abbSelected: true,
       claimSelected: true,
       evidenceStrength: true,
+      advancedSearchView: false,
     };
+  }
+  advancedSearchViewChange() {
+    this.setState({advancedSearchView: !this.state.advancedSearchView})
   }
   handleInputChange(value) {
     this.setState({ titleSelected: !this.state.titleSelected });
@@ -144,10 +147,13 @@ class SearchTable extends Component {
       },
     ];
 
-    const { search } = window.location;
+    const { search } = window.location;    
     const searchTerm = new URLSearchParams(search).get("search");
     const searchField = new URLSearchParams(search).get("searchField");
     filteredPosts = filterPosts(posts, searchTerm, searchField);
+    const searchTerm2 = new URLSearchParams(search).get("search2");
+    const searchField2 = new URLSearchParams(search).get("searchField2");
+    filteredPosts = filterPosts(filteredPosts, searchTerm2, searchField2);
 
     return (
       <div>
@@ -164,11 +170,13 @@ class SearchTable extends Component {
             </div>
             <img src={logo} alt={"logo"} width="250" height="230"></img>
           </div>
-          <br></br>
-          <Search />
-          <br></br>
+          <br />
+          {!this.state.advancedSearchView && <Search />}
+          {this.state.advancedSearchView && <AdvancedSearch />}
+          <button class="btn btn-default" type="submit" onClick={this.advancedSearchViewChange.bind(this)}>Advanced Search</button>
+          <br />
         </div>
-        <br></br>
+        <br />
         <div>
           <div>
             <div class="form-check form-check-inline">
