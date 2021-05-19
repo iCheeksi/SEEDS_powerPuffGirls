@@ -6,7 +6,6 @@ var dotenv = require("dotenv")
 var routeUrls = require('./router/route')
 const routes = require('./router/api')
 dotenv.config()
-const PORT = process.env.PORT || 3001;
 const MONGODB = "mongodb+srv://powerpuffgirls:PowerPuffGirls@cluster0.6hhuy.mongodb.net/userTable?retryWrites=true&w=majority";
 
 mongoose.connect(process.env.MONGODB_URI || MONGODB), {
@@ -28,6 +27,6 @@ if (process.env.NODE_ENV === 'production') {
     
   }
 
-app.listen( PORT, () =>{
+app.listen( process.env.PORT || 3001, () =>{
     console.log("Server is working!")
 })
