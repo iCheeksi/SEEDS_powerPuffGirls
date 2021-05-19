@@ -22,7 +22,7 @@ app.use('/api', routes)
 app.use('/server', routeUrls)
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('register/build'));
+    app.use(express.static('./register/build'));
     
     
   }
