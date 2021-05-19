@@ -1,7 +1,8 @@
 {
     "scripts": {
-        "postinstall": "cd register && npm install",
-        "start": "cd register && npm start"
+       
+        "start": "cd registerbackend && npm install && npm start",
+        "heroku-postbuild": "cd register && npm install && npm run build"
         
     },
     "dependencies": {
