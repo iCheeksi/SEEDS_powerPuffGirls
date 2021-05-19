@@ -9,7 +9,7 @@ dotenv.config()
 const PORT = process.env.PORT || 3001;
 const MONGODB_URI = "mongodb+srv://powerpuffgirls:PowerPuffGirls@cluster0.6hhuy.mongodb.net/userTable?retryWrites=true&w=majority";
 
-mongoose.connect(MONGODB_URI), {
+mongoose.connect(MONGODB_URI || 'mongodb://localhost/seeds_db'), {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }

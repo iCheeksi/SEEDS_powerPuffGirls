@@ -3,7 +3,7 @@ var router = express.Router()
 const articleModel = require('../models/article_model')
 
 //Route
-router.get('/api', (req, res) => {
+router.get('/', (req, res) => {
     articleModel.find({})
     .then((data) => {
         console.log('Data:', data)
