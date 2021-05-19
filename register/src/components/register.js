@@ -42,7 +42,7 @@ class Register extends Component {
       password: this.state.password,
     };
     axios
-      .post("http://localhost:3001/server/register", registered)
+      .post("/server/register", registered)
       .then((response) => console.log(response.data));
 
     this.setState({

@@ -90,7 +90,7 @@ class SearchTable extends Component {
     this.setState({ evidenceStrength: !this.state.evidenceStrength });
   }
   async getArticles() {
-    const res = await axios.get("http://localhost:3001/api/api");
+    const res = await axios.get("/api");
     console.log(res.data);
     posts = res.data;
     this.setState({ loading: false, articles: res.data });
