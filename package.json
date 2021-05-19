@@ -2,7 +2,9 @@
     "scripts": {
        
         "start": "cd registerbackend && npm install && npm start",
-        "heroku-postbuild": "cd register && npm install && npm run build"
+        "build":"cd register && npm run build",
+        "install-client":"cd register && npm install",
+        "heroku-postbuild": "npm run install-client && npm run build"
         
     },
     "dependencies": {
