@@ -1,32 +1,40 @@
-import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.css";
-import axios from "axios";
-import Rlogo from "./register.png";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/sort-comp */
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import axios from 'axios';
+import Rlogo from './register.png';
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      userName: "",
-      password: "",
+      name: '',
+      userName: '',
+      password: '',
     };
     this.changename = this.changename.bind(this);
     this.changeUserName = this.changeUserName.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  //react function to change the value of name, username and password field
+
+  // react function to change the value of name, username and password field
   changename(event) {
     this.setState({
       name: event.target.value,
     });
   }
+
   changeUserName(event) {
     this.setState({
       userName: event.target.value,
     });
   }
+
   changePassword(event) {
     this.setState({
       password: event.target.value,
@@ -42,40 +50,41 @@ class Register extends Component {
       password: this.state.password,
     };
     axios
-      .post("/server/register", registered)
+      .post('/server/register', registered)
       .then((response) => console.log(response.data));
 
     this.setState({
-      name: "",
-      userName: "",
-      password: "",
+      name: '',
+      userName: '',
+      password: '',
     });
   }
+
   render() {
     return (
       <div>
         <div className="container">
-          <br></br>
+          <br />
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
-            <h3>{"Register!"}</h3>
+            <h3>Register!</h3>
           </div>
-          <br></br>
+          <br />
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
-            <img src={Rlogo} alt={"logo"} width="230" height="250"></img>
+            <img src={Rlogo} alt="logo" width="230" height="250" />
           </div>
-          <br></br>
+          <br />
           <div className="form-div">
             <form onSubmit={this.onSubmit}>
               <input
@@ -104,7 +113,7 @@ class Register extends Component {
                 type="submit"
                 className="btn btn-danger btn-block"
                 value="submit"
-              ></input>
+              />
             </form>
           </div>
         </div>
