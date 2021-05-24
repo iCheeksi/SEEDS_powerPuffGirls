@@ -8,6 +8,7 @@ import "react-table-6/react-table.css";
 import "../table.css";
 import "bootstrap/dist/css/bootstrap.css";
 import logo from "./SEEDSlogo.png";
+import SubmitForm from "./submit";
 let posts = [];
 let filteredPosts = [];
 
@@ -158,7 +159,14 @@ class SearchTable extends Component {
     return (
       <div>
         <div>
-          <div>
+          <div style={{ float: "center" }}>
+            <Link to={"/submit"}>
+              <input
+              type="submit"
+              className="btn btn-success btn-block"
+              value="SubmitForm"
+              ></input>
+            </Link>
             <div style={{ float: "right" }}>
               <Link to={"/register"}>
                 <input
