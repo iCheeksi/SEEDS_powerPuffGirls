@@ -159,22 +159,22 @@ class SearchTable extends Component {
     return (
       <div>
         <div>
-          <div style={{ float: "center" }}>
-            <Link to={"/submit"}>
-              <input
-              type="submit"
-              className="btn btn-success btn-block"
-              value="SubmitForm"
-              ></input>
-            </Link>
+          <div>
             <div style={{ float: "right" }}>
-              <Link to={"/register"}>
+              <Link to={"/register"}> 
                 <input
                   type="submit"
                   className="btn btn-danger btn-block"
                   value="Register"
                 ></input>
               </Link>
+              <Link to ={"/submit"}>
+              <input
+                type="submit"
+                className="btn btn-success btn-block"
+                value="Submit an article"
+                ></input>
+                </Link>
             </div>
             <img src={logo} alt={"logo"} width="250" height="230"></img>
           </div>
