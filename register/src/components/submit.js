@@ -91,7 +91,6 @@ class SubmitForm extends Component {
     return (
       <div>
         <div className="container">
-          <br></br>
           <div
             style={{
               display: "flex",
@@ -169,6 +168,7 @@ class SubmitForm extends Component {
                 className="btn btn-success btn-block"
                 value="submit"
               ></input>
+              <br></br>
             </form>
           </div>
         </div>

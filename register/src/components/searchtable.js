@@ -179,14 +179,28 @@ class SearchTable extends Component {
             <img src={logo} alt={"logo"} width="250" height="230"></img>
           </div>
           <br />
+          
+          <h3>{"Search for Articles"}</h3>
           {!this.state.advancedSearchView && <Search />}
           {this.state.advancedSearchView && <AdvancedSearch />}
-          <button class="btn btn-default" type="submit" onClick={this.advancedSearchViewChange.bind(this)}>Advanced Search</button>
+          <br></br>
+          <div style={{ float: "left" }}>
+          <button class="btn btn-default" className="btn btn-danger btn-block" type="submit" onClick={this.advancedSearchViewChange.bind(this)}>Advanced Search</button>
+          </div> 
+          <br></br>
           <br />
+          <hr></hr>
         </div>
-        <br />
+       
         <div>
           <div>
+          <h3>{"Table of Articles"}</h3>
+          <br></br>
+          <p>
+            {
+              "Choose which columns you want to view."
+            }
+          </p>
             <div class="form-check form-check-inline">
               <label class="form-check-label" for="inlineRadio1">
                 Title
@@ -276,13 +290,13 @@ class SearchTable extends Component {
               />
             </div>
           </div>
-
-          <h3>{"Table of Articles"}</h3>
+          
           <p>
             {
               "Click column header to sort & drag column header to widen columns"
             }
           </p>
+          <hr></hr>
         </div>
         <ReactTable data={filteredPosts} columns={columns} />
       </div>
