@@ -2,14 +2,13 @@
 
 var express = require ("express")
 var router = express.Router()
-const articleModel = require('../models/article_model')
+const articleModel = require('../models/article_model_test')
 
 //The page is expecting post request since the user will give the page some information
 router.post('/submit', (request, response) => 
 {
     var articleInfo = new articleModel({
         //this is where this method will grab an article information and make sure it does before the user can submit
-        key:request.body.key,
         title:request.body.title,
         author:request.body.author,
         year:request.body.year,

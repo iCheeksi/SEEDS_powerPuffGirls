@@ -7,7 +7,6 @@ class SubmitForm extends Component {
   constructor() {
     super();
     this.state = {
-      key: "",
       title: "",
       author: "",
       year: "",
@@ -16,7 +15,6 @@ class SubmitForm extends Component {
       claim: "",
       evidenceStrength: "",
     };
-    this.changeKey = this.changeKey.bind(this);
     this.changetitle = this.changetitle.bind(this);
     this.changeauthor = this.changeauthor.bind(this);
     this.changeYear = this.changeYear.bind(this);
@@ -27,11 +25,6 @@ class SubmitForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   //react function to change the value of name, username and password field
-  changeKey(event) {
-    this.setState({
-      key: event.target.value,
-    });
-  }
   changetitle(event) {
     this.setState({
       title: event.target.value,
@@ -72,7 +65,6 @@ class SubmitForm extends Component {
     event.preventDefault();
 
     const submitted = {
-      key:this.state.key,
       title: this.state.title,
       author: this.state.author,
       year: this.state.year,
@@ -86,7 +78,6 @@ class SubmitForm extends Component {
       .then((response) => console.log(response.data));
 
     this.setState({
-      key: "",
       title: "",
       author: "",
       year: "",
@@ -123,13 +114,6 @@ class SubmitForm extends Component {
           <br></br>
           <div className="form-div">
             <form onSubmit={this.onSubmit}>
-              <input
-                type="text"
-                placeholder="Key"
-                onChange={this.changeKey}
-                value={this.state.key}
-                className="form-control form-group"
-                />
               <input
                 type="text"
                 placeholder="Title"

@@ -1,9 +1,13 @@
   
-POST http://localhost:3000/server/register
+POST http://localhost:3000/server/submit
 Content-Type: application/json
 
 {
-    "name":"checking",
-    "userName":"to",
-    "password":"see"
+    "title":"Hello",
+    "author":"Is it you",
+    "year":"2021",
+    "sePracticeFull":"awngln",
+    "sePracticeShort":"Hi Hi",
+    "claim":"short",
+    "evidenceStrength":"HI HI HI"
 }
