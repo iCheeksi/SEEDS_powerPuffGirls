@@ -74,7 +74,7 @@ class SubmitForm extends Component {
       evidenceStrength: this.state.evidenceStrength
     };
     axios
-      .post("/server/submit", submitted)
+      .post("/api/submit", submitted)
       .then((response) => console.log(response.data));
 
     this.setState({

@@ -5,7 +5,6 @@ var mongoose = require('mongoose')
 var dotenv = require("dotenv")
 var routeUrls = require('./router/route')
 const routes = require('./router/api')
-const routesForm = require('./router/submitRoute')
 dotenv.config()
 const MONGODB = "mongodb+srv://powerpuffgirls:PowerPuffGirls@cluster0.6hhuy.mongodb.net/userTable?retryWrites=true&w=majority";
 
@@ -21,7 +20,6 @@ mongoose.connection.on ('connected', () => {
 app.use(express.json()) //body passer activated
 app.use(cor())
 app.use('/api', routes)
-app.use('/submitRoute', routesForm)
 app.use('/server', routeUrls)
 
 //for heroku deployment
